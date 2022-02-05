@@ -173,17 +173,28 @@ const promptEmployee = () => {
     });
 };
 
-const updateEmployee = () => {
+const updateRole = () => {
   return inquirer
     .prompt([
       {
         type: 'input',
+        name: 'first_name',
+        message:
+          'What is the first name of the employee you would like to update?',
+      },
+      {
+        type: 'input',
+        name: 'last_name',
+        message: 'What is their last name?',
+      },
+      {
+        type: 'input',
         name: 'role_id',
-        message: 'What is their role?',
+        message: 'What is their new role?',
       },
     ])
     .then(answer => {
-      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.first_name}', '${answer.last_name}', '${answer.role_id}', '${answer.manager_id}')`;
+      const sql = `UPDATE employee SET role_id = '${answer.role_id}' WHERE first_name='${answer.first_name}' AND last_name='${answer.last_name}'`;
       db.query(sql, (err, rows) => {
         if (err) {
           console.log(err);
