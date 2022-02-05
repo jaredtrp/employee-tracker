@@ -52,7 +52,7 @@ const viewDepartments = () => {
 
   db.query(sql, (err, rows) => {
     if (err) {
-      // console.log(err);
+      console.log(err);
       return;
     }
     console.table(rows);
@@ -95,7 +95,95 @@ const promptDepartment = () => {
     ])
     .then(({ name }) => {
       const sql = `INSERT INTO department (name) VALUES ('${name}')`;
-      // console.log(name);
+      db.query(sql, (err, rows) => {
+        if (err) {
+          console.log(err);
+          return err;
+        }
+        promptUser();
+      });
+    });
+};
+
+const promptRole = () => {
+  return inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'title',
+        message: 'What is the title of the role you would like to add?',
+      },
+      {
+        type: 'input',
+        name: 'salary',
+        message: 'What is the salary of the role?',
+      },
+      {
+        type: 'input',
+        name: 'department_id',
+        message: 'Which department does this role belong to?',
+      },
+    ])
+    .then(answer => {
+      const sql = `INSERT INTO role (title, salary, department_id) VALUES ('${answer.title}', '${answer.salary}', '${answer.department_id}')`;
+      db.query(sql, (err, rows) => {
+        if (err) {
+          console.log(err);
+          return err;
+        }
+        promptUser();
+      });
+    });
+};
+
+const promptEmployee = () => {
+  return inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'first_name',
+        message:
+          'What is the first name of the employee you would like to add?',
+      },
+      {
+        type: 'input',
+        name: 'last_name',
+        message: 'What is their last name?',
+      },
+      {
+        type: 'input',
+        name: 'role_id',
+        message: 'What is their role?',
+      },
+      {
+        type: 'input',
+        name: 'manager_id',
+        message: 'Who is their manager?',
+      },
+    ])
+    .then(answer => {
+      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.first_name}', '${answer.last_name}', '${answer.role_id}', '${answer.manager_id}')`;
+      db.query(sql, (err, rows) => {
+        if (err) {
+          console.log(err);
+          return err;
+        }
+        promptUser();
+      });
+    });
+};
+
+const updateEmployee = () => {
+  return inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'role_id',
+        message: 'What is their role?',
+      },
+    ])
+    .then(answer => {
+      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${answer.first_name}', '${answer.last_name}', '${answer.role_id}', '${answer.manager_id}')`;
       db.query(sql, (err, rows) => {
         if (err) {
           console.log(err);
