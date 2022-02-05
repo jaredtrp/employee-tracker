@@ -1,4 +1,4 @@
-USE employee;
+USE corp;
 
 INSERT INTO department (name) VALUES
     ('Marketing'),

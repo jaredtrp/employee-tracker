@@ -29,7 +29,7 @@ const promptUser = () => {
           viewRoles();
           break;
         case 'View all Employees':
-          viewHands();
+          viewEmployee();
           break;
         case 'Add a Department':
           promptDepartment();
