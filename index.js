@@ -72,7 +72,7 @@ const viewRoles = () => {
   });
 };
 
-const viewHands = () => {
+const viewEmployee = () => {
   const sql = `SELECT * FROM employee;`;
 
   db.query(sql, (err, rows) => {

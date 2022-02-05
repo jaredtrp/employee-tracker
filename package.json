@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "sequelize": "^6.15.0"
+  }
+}
